@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Class responsible for getting the user input.
+ * Class responsible for getting the user input, together with the displaying the program
+ * information and outputs, to the default output stream.
  * @author Przemysław Giza
+ * @version 1.1
  */
 public class View {
     private final String[] UI_MENU_CONTENT={    //array of strings that contains whole menu text

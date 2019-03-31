@@ -6,7 +6,7 @@ import pl.polsl.giza.przemyslaw.view.*;
 /**
  * Controller main class, which displays the user interface and operates
  * on the RSA cipher algorithm.
- * @version 1.0
+ * @version 1.1
  * @author Przemysław Giza
  */
 public class Main {

@@ -8,6 +8,7 @@ package pl.polsl.giza.przemyslaw.exceptions;
 /**
  * Exception which is thrown, when the value to be transformed by the RSA algorithm exceeds the set value of the modulus.
  * @author Przemysław Giza
+ * @version 1.1
  */
 public class ModulusExceedException extends Exception{
     /**

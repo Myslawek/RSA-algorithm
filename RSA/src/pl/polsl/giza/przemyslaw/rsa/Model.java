@@ -7,7 +7,7 @@ import pl.polsl.giza.przemyslaw.exceptions.*;
 /**
  * The RSACypher implements the RSA encryption algorithm for a user input.
  * @author Przemysław Giza
- * @version 1.0
+ * @version 1.1
  */
 public class Model {
     private final int UPPER_BOUND;  //holds the value of the max prime number to be generated
@@ -37,6 +37,7 @@ public class Model {
       * In this constructor the user specifies the range of the prime numbers within range of: [lowerBound, upperBound]
       * @param lowerBound lower bound for prime numbers searching
       * @param upperBound upper bound for prime numbers searching
+      * @throws pl.polsl.giza.przemyslaw.exceptions.WrongRangeException exception is thrown when the specified bounds are not proper
       */
     public Model(int lowerBound, int upperBound) throws WrongRangeException{
         if(lowerBound>=upperBound||lowerBound<0||upperBound<0){  
@@ -122,6 +123,7 @@ public class Model {
      * @param key the key for which the encoding should happen
      * @param gvnModulus value of modulus used in encoding
      * @return sentence modulated by the key and modulus. Simply encoded/decoded message
+     * @throws pl.polsl.giza.przemyslaw.exceptions.ModulusExceedException Throws the exception, when the single value exceeds the modulus, thus making the RSA algorithm not working properly
      */
     private String cypheringAlgorithm(String sentence, int key, long gvnModulus) throws ModulusExceedException{
         if(sentence.length()<1)
@@ -162,6 +164,7 @@ public class Model {
      * Encrypts specified by the user chain of numbers with default public key and modulus
      * @param sentence the chain to encrypt
      * @return encrypted chain
+     * @throws pl.polsl.giza.przemyslaw.exceptions.ModulusExceedException throws up the ModulusExceedException from the cypheringAlgorithm method.
      */
     public String encryptChain(String sentence) throws ModulusExceedException{
         return cypheringAlgorithm(sentence, publicKey, modulus);
@@ -172,6 +175,7 @@ public class Model {
      * @param key proper public key
      * @param gvnModulus proper modulus
      * @return encrypted chain
+     * @throws pl.polsl.giza.przemyslaw.exceptions.ModulusExceedException throws up the ModulusExceedException from the cypheringAlgorithm method.
      */
     public String encryptChain(String sentence, int key, long gvnModulus) throws ModulusExceedException{
         return cypheringAlgorithm(sentence, key, gvnModulus);
@@ -181,6 +185,7 @@ public class Model {
      * Decrypts the sentence with default private key, encrypted with the default public key.
      * @param sentence chain specified by the user
      * @return decrypted chain
+     * @throws pl.polsl.giza.przemyslaw.exceptions.ModulusExceedException throws up the ModulusExceedException from the cypheringAlgorithm method.
      */
     public String decryptChain(String sentence) throws ModulusExceedException{
         return cypheringAlgorithm(sentence, privateKey, modulus);
@@ -191,6 +196,7 @@ public class Model {
      * @param key proper private key
      * @param gvnModulus proper modulus
      * @return decrypted chain
+     * @throws pl.polsl.giza.przemyslaw.exceptions.ModulusExceedException throws up the ModulusExceedException from the cypheringAlgorithm method.
      */
     public String decryptChain(String sentence, int key, long gvnModulus) throws ModulusExceedException{
         return cypheringAlgorithm(sentence, key, gvnModulus);
@@ -235,6 +241,7 @@ public class Model {
      * Encrypts sentence into chain of numbers
      * @param sentence sentence which should be encrypted
      * @return chain of encrypted numbers representing the sentence
+     * @throws pl.polsl.giza.przemyslaw.exceptions.ModulusExceedException throws up the ModulusExceedException from the cypheringAlgorithm method.
      */
     public String encryptSentence(String sentence) throws ModulusExceedException{
         return cypheringAlgorithm(sentenceToChain(sentence), publicKey,modulus);
@@ -245,6 +252,7 @@ public class Model {
      * natural language message.
      * @param sentence chain of numbers, which should be decrypted
      * @return decrypted chain in form of readable message
+     * @throws pl.polsl.giza.przemyslaw.exceptions.ModulusExceedException throws up the ModulusExceedException from the cypheringAlgorithm method.
      */
     public String decryptSentence(String sentence) throws ModulusExceedException{
         String chain=cypheringAlgorithm(sentence, privateKey, modulus);
@@ -256,6 +264,7 @@ public class Model {
      * @param key private key for which the sentence should be decrypted
      * @param gvnModulus modulus for which the sentence should be decrypted
      * @return decrypted sentence in for of natural language
+     * @throws pl.polsl.giza.przemyslaw.exceptions.ModulusExceedException throws up the ModulusExceedException from the cypheringAlgorithm method.
      */
     public String decryptSentence(String sentence, int key, long gvnModulus) throws ModulusExceedException{
         String chain=cypheringAlgorithm(sentence, key, gvnModulus);
