@@ -2,6 +2,7 @@ package pl.polsl.giza.przemyslaw.rsa;
 
 import java.math.BigInteger;
 import java.util.Random;
+import pl.polsl.giza.przemyslaw.exceptions.*;
 
 /**
  * The RSACypher implements the RSA encryption algorithm for a user input.
@@ -23,20 +24,24 @@ public class Model {
      * This constructor sets the boundaries for the prime numbers generation as for range from 100 to 1000
      */
     public Model(){
-        this(100,1000);
+        LOWER_BOUND=100;
+        UPPER_BOUND=1000;
+        FIRST_PRIME=generatePrimeNumber();
+        SECOND_PRIME=generatePrimeNumber();
+        modulus = FIRST_PRIME*SECOND_PRIME;
+        TOTIENT=(FIRST_PRIME-1)*(SECOND_PRIME-1);
+        publicKey=generateEncryptionKey();
+        privateKey=generateDecryptionKey();
     }
      /**
       * In this constructor the user specifies the range of the prime numbers within range of: [lowerBound, upperBound]
       * @param lowerBound lower bound for prime numbers searching
       * @param upperBound upper bound for prime numbers searching
       */
-    public Model(int lowerBound, int upperBound){
-        if(lowerBound>upperBound){  //PODMIENIC NA THROWA I ZROBIC EXCEPTION
-            int temp;
-            temp=lowerBound;
-            lowerBound=upperBound;
-            upperBound=temp;
-        }   //exceptions will be added in future builds (hope so). FOR same bounds
+    public Model(int lowerBound, int upperBound) throws WrongRangeException{
+        if(lowerBound>=upperBound||lowerBound<0||upperBound<0){  
+            throw new WrongRangeException();
+        }
         LOWER_BOUND=lowerBound;
         UPPER_BOUND=upperBound;
         FIRST_PRIME=generatePrimeNumber();
@@ -118,7 +123,7 @@ public class Model {
      * @param gvnModulus value of modulus used in encoding
      * @return sentence modulated by the key and modulus. Simply encoded/decoded message
      */
-    private String cypheringAlgorithm(String sentence, int key, long gvnModulus){
+    private String cypheringAlgorithm(String sentence, int key, long gvnModulus) throws ModulusExceedException{
         if(sentence.length()<1)
             return null;
         StringBuilder result = new StringBuilder();
@@ -142,6 +147,8 @@ public class Model {
         }
         if(number.length()>0){
             encryptedValue = new BigInteger(number.toString());
+            if(Long.parseLong(number.toString())>=gvnModulus)    //the RSA algorithm works properly only, when the value to be encrypted is lesser than modulus. 
+                throw new ModulusExceedException();
             encryptedValue = encryptedValue.pow(key).mod(BigInteger.valueOf(gvnModulus));
             if(result.length()>0){
                 result.append(" ");
@@ -156,7 +163,7 @@ public class Model {
      * @param sentence the chain to encrypt
      * @return encrypted chain
      */
-    public String encryptChain(String sentence){
+    public String encryptChain(String sentence) throws ModulusExceedException{
         return cypheringAlgorithm(sentence, publicKey, modulus);
     }
     /**
@@ -166,7 +173,7 @@ public class Model {
      * @param gvnModulus proper modulus
      * @return encrypted chain
      */
-    public String encryptChain(String sentence, int key, long gvnModulus){
+    public String encryptChain(String sentence, int key, long gvnModulus) throws ModulusExceedException{
         return cypheringAlgorithm(sentence, key, gvnModulus);
     }
     
@@ -175,7 +182,7 @@ public class Model {
      * @param sentence chain specified by the user
      * @return decrypted chain
      */
-    public String decryptChain(String sentence){
+    public String decryptChain(String sentence) throws ModulusExceedException{
         return cypheringAlgorithm(sentence, privateKey, modulus);
     }
     /**
@@ -185,7 +192,7 @@ public class Model {
      * @param gvnModulus proper modulus
      * @return decrypted chain
      */
-    public String decryptChain(String sentence, int key, long gvnModulus){
+    public String decryptChain(String sentence, int key, long gvnModulus) throws ModulusExceedException{
         return cypheringAlgorithm(sentence, key, gvnModulus);
     }
     /**
@@ -229,7 +236,7 @@ public class Model {
      * @param sentence sentence which should be encrypted
      * @return chain of encrypted numbers representing the sentence
      */
-    public String encryptSentence(String sentence){
+    public String encryptSentence(String sentence) throws ModulusExceedException{
         return cypheringAlgorithm(sentenceToChain(sentence), publicKey,modulus);
     }
     
@@ -239,7 +246,7 @@ public class Model {
      * @param sentence chain of numbers, which should be decrypted
      * @return decrypted chain in form of readable message
      */
-    public String decryptSentence(String sentence){
+    public String decryptSentence(String sentence) throws ModulusExceedException{
         String chain=cypheringAlgorithm(sentence, privateKey, modulus);
         return chainToSentence(chain);
     }
@@ -250,7 +257,7 @@ public class Model {
      * @param gvnModulus modulus for which the sentence should be decrypted
      * @return decrypted sentence in for of natural language
      */
-    public String decryptSentence(String sentence, int key, long gvnModulus){
+    public String decryptSentence(String sentence, int key, long gvnModulus) throws ModulusExceedException{
         String chain=cypheringAlgorithm(sentence, key, gvnModulus);
         return chainToSentence(chain);
     }

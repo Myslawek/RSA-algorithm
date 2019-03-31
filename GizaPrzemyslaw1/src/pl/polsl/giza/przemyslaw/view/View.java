@@ -108,4 +108,8 @@ public class View {
             System.out.println(line);
         });
     }
+    
+    public void printModulusExceed(){
+        
+    }
 }
