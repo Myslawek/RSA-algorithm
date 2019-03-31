@@ -18,7 +18,7 @@ public class Main {
         View view = new View();
         Model model;
         try{
-        model = new Model(-3,12);
+        model = new Model(-3,10);
         }catch(WrongRangeException e){
             view.println("Specified range of prime numbers is not a proper one! Setting default range.");
             model=new Model();
@@ -144,6 +144,8 @@ public class Main {
                     }
                 }catch(ModulusExceedException e){
                     view.println(e.getMessage());
+                }catch(ArrayIndexOutOfBoundsException e){
+                    view.println("The number of parameters was improper!");
                 }
                 
             }
