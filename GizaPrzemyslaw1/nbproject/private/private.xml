@@ -5,7 +5,7 @@
             <url>src/pl/polsl/giza/przemyslaw/rsa/Model.java</url>
             <bookmark id="1">
                 <name/>
-                <line>67</line>
+                <line>72</line>
                 <key/>
             </bookmark>
         </file>
@@ -13,6 +13,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/studia/ItPiJ/project1/GizaPrzemyslaw1/src/pl/polsl/giza/przemyslaw/main/Main.java</file>
+            <file>file:/D:/studia/ItPiJ/project1/GizaPrzemyslaw1/src/pl/polsl/giza/przemyslaw/exceptions/WrongRangeException.java</file>
+            <file>file:/D:/studia/ItPiJ/project1/GizaPrzemyslaw1/src/pl/polsl/giza/przemyslaw/exceptions/ModulusExceedException.java</file>
             <file>file:/D:/studia/ItPiJ/project1/GizaPrzemyslaw1/src/pl/polsl/giza/przemyslaw/view/View.java</file>
             <file>file:/D:/studia/ItPiJ/project1/GizaPrzemyslaw1/src/pl/polsl/giza/przemyslaw/rsa/Model.java</file>
         </group>
