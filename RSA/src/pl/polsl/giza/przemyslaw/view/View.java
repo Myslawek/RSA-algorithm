@@ -83,14 +83,14 @@ public class View {
     }
     /**
      * Prints given string and feeds new line
-     * @param gvnString 
+     * @param gvnString the string to be printed on the output
      */
     public void println(String gvnString){
         System.out.println(gvnString);
     }
     /**
      * Prints given string
-     * @param gvnString 
+     * @param gvnString the string to be printed on the output
      */
     public void print(String gvnString){
         System.out.print(gvnString);

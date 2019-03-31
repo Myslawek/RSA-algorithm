@@ -18,7 +18,7 @@ public class Main {
         View view = new View();
         Model model;
         try{
-        model = new Model(-3,10);
+        model = new Model(100,1000);
         }catch(WrongRangeException e){
             view.println("Specified range of prime numbers is not a proper one! Setting default range.");
             model=new Model();
