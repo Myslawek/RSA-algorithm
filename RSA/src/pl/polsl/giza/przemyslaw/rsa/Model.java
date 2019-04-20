@@ -10,15 +10,42 @@ import pl.polsl.giza.przemyslaw.exceptions.*;
  * @version 1.1
  */
 public class Model {
-    private final int UPPER_BOUND;  //holds the value of the max prime number to be generated
-    private final int LOWER_BOUND;  //hold the value of min prime number to be generated
-    private final Random RAND = new Random();   //used to create random values
-    private final int FIRST_PRIME;  //first prime number p
-    private final int SECOND_PRIME;  //second prime number q
-    private long modulus;  //product of p and q
-    private final int TOTIENT; //euler function value (q-1)(p-1)
-    private int privateKey; //holds the value of private key of the RSA algorithm
-    private int publicKey;  //hold the value of public key of the RSA algorithm
+    /**
+     * holds the value of the max prime number to be generated
+     */
+    private final int UPPER_BOUND;
+    /**
+     * hold the value of min prime number to be generated
+     */
+    private final int LOWER_BOUND;
+    /**
+     * used to create random values
+     */
+    private final Random RAND = new Random();
+    /**
+     * first prime number p
+     */
+    private final int FIRST_PRIME;
+    /**
+     * second prime number q
+     */
+    private final int SECOND_PRIME; 
+    /**
+     * product of p and q
+     */
+    private long modulus;
+    /**
+     * euler function value (q-1)(p-1)
+     */
+    private final int TOTIENT;
+    /**
+     * holds the value of private key of the RSA algorithm
+     */
+    private int privateKey;
+    /**
+     * hold the value of public key of the RSA algorithm
+     */
+    private int publicKey;
     
     /**
      * This constructor sets the boundaries for the prime numbers generation as for range from 100 to 1000

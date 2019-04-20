@@ -16,7 +16,10 @@ import java.util.Scanner;
  * @version 1.1
  */
 public class View {
-    private final String[] UI_MENU_CONTENT={    //array of strings that contains whole menu text
+    /**
+     * array of strings that contains whole menu text
+     */
+    private final String[] UI_MENU_CONTENT={
         "Available options:",
         "1. Encrypt chain with default key",
         "2. Decrypt chain with default key",
@@ -28,7 +31,10 @@ public class View {
         "8. Specify model",
         "Any other option means EXIT"
     };
-    private final List<String> UI_HELP_CONTENT;  //Linked list, which will hold Strings representing help for the user.
+    /**
+     * Linked list, which will hold Strings representing help for the user.
+     */
+    private final List<String> UI_HELP_CONTENT;
     /**
      * Creating the object, to be able to read the input, from the console (default user input source)
      */
