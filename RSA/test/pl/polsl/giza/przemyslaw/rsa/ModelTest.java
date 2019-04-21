@@ -5,12 +5,8 @@
  */
 package pl.polsl.giza.przemyslaw.rsa;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 /**
  * Class used for testing the public methods of the 
@@ -23,22 +19,6 @@ public class ModelTest {
     public ModelTest() {
     }
     
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
-
     /**
      * Test of encryptChain method, of class Model.
      */
@@ -52,7 +32,7 @@ public class ModelTest {
         String result = instance.encryptChain(sentence);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
