@@ -43,7 +43,7 @@ public class ModelTest {
      * Test of encryptChain method, of class Model.
      */
     @Test
-    public void testEncryptChain_String() throws Exception {
+    public void EncryptChain_Stringtest() throws Exception {
         System.out.println("encryptChain");
         String sentence = "1198";
         Model instance = new Model();
