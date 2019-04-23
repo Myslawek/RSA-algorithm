@@ -26,6 +26,22 @@ public class ModelTest {
      */
     public ModelTest() {
     }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @After
+    public void tearDown() throws Exception {
+    }
     
     /**
      * Test of the constructor with specifying prime numbers range, of class Model.
