@@ -162,6 +162,8 @@ public class Model {
             if(sentence.charAt(i)==' '&&number.length()>0){    //space found, number is complete. number.length()>0 LATER
                 //encrypt
                 encryptedValue = new BigInteger(number.toString());
+                if(Long.parseLong(number.toString())>=gvnModulus)    //the RSA algorithm works properly only, when the value to be encrypted is lesser than modulus. 
+                    throw new ModulusExceedException();
                 encryptedValue = encryptedValue.pow(key).mod(BigInteger.valueOf(gvnModulus));
                 
                 if(result.length()>0){

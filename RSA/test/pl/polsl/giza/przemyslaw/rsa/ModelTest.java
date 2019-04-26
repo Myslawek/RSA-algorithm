@@ -7,7 +7,10 @@ package pl.polsl.giza.przemyslaw.rsa;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import org.junit.experimental.categories.Category;
+import pl.polsl.giza.przemyslaw.exceptions.ModulusExceedException;
 import pl.polsl.giza.przemyslaw.exceptions.WrongRangeException;
+import pl.polsl.giza.przemyslaw.rsa.markers.*;
 
 /**
  * Class used for testing the public methods of the 
@@ -44,12 +47,27 @@ public class ModelTest {
     }
     
     /**
+     * Tests if the object of Model class is initialized without any errors, with
+     * proper range of primes defined.
+     */
+    @Category(NormalTests.class)
+    @Test
+    public void testModelProperRange(){
+        try{
+            instance = new Model(3,15);
+        }catch(WrongRangeException e){
+            fail("The object was not initialized!");
+        }
+    }
+    
+    /**
      * Test of the constructor with specifying prime numbers range, of class Model.
      * Check whether the exception is thrown for the incorrect initialization
      * of the object. If it is not, then the test is failed.
      */
+    @Category(AbnormalTests.class)
     @Test
-    public void testModel(){
+    public void testModelReverseRange(){
         try{
             instance = new Model(3123,-50);
             fail("Wrong object initialization was not recognized!");
@@ -57,13 +75,28 @@ public class ModelTest {
             //this point should be reached, if the exception will be thorwn correctly.
         }
     }
-    
+    /**
+     * Tests if the object of model class can be initialized, with prime number
+     * values ranged, set to the same number on both sides. If not, then the
+     * test is passed.
+     */
+    @Category(BorderTests.class)
+    @Test
+    public void testModelSameBorders(){
+        try{
+            instance = new Model(12,12);
+            fail("The model constructor did not throw any error, for indentical borders");
+        }catch(Exception e){
+            //should reach this point
+        }
+    }
     
     /**
      * Test of encryptChain method, of class Model.
      * Checks if the sentence if properly decrypted with the default 
      * values of keys and modulus.
      */
+    @Category(NormalTests.class)
     @Test
     public void testEncryptChain_String() throws Exception {
         System.out.println("encryptChain with default key");
@@ -81,9 +114,10 @@ public class ModelTest {
      * chain of number separated with spaces, is properly
      * encrypted.
      */
+    @Category(NormalTests.class)
     @Test
-    public void testEncryptChain_3args() throws Exception {
-        System.out.println("encryptChain with specified key");
+    public void testEncryptChainProper_3args() throws Exception {
+        //System.out.println("encryptChain with specified key");
         String sentence = "5 48 7 19";
         int publicKey = 5;
         long gvnModulus = 38243;
@@ -92,12 +126,52 @@ public class ModelTest {
         String result = instance.encryptChain(sentence, publicKey, gvnModulus);
         assertEquals(expResult, result);
     }
-
+    /**
+     *  Tests if the value, which is exactly the same, as the modulus, can be 
+     *  properly cyphered.
+     */
+    @Category(BorderTests.class)
+    @Test
+    public void testEncryptChainEqualModulus_3args() throws Exception {
+        String sentence = "5 48 7 19";
+        int publicKey = 5;
+        long gvnModulus = 48;
+        instance = new Model();
+        try{
+            String result = instance.encryptChain(sentence, publicKey, gvnModulus);
+            fail("Value is not lesser, than the modulus, but the exception was not thrown!");
+        }catch(ModulusExceedException e){
+            //this point should be reachead
+        }
+    }
+    
+    /**
+     *  Tests if the exception will be raised for the value of modulus lesser,
+     * than the value located inside the chain
+     */
+    @Category(AbnormalTests.class)
+    @Test
+    public void testEncryptChainLesserModulus_3args() throws Exception {
+        String sentence = "5 48 7 19";
+        int publicKey = 5;
+        long gvnModulus = 48;
+        instance = new Model();
+        try{
+            String result = instance.encryptChain(sentence, publicKey, gvnModulus);
+            fail("Modulus is lesser than the highest value in the chain, but the exception was not raised!");
+        }catch(ModulusExceedException e){
+            //this point should be reachead
+        }
+    }
+    
+    //CHECK POINT
+    
     /**
      * Test of decryptChain method, of class Model.
      * Checks if the specified chain of values can be
      * properly decrypted.
      */
+    @Category(NormalTests.class)
     @Test
     public void testDecryptChain_String() throws Exception {
         System.out.println("decryptChain with default key");
@@ -114,6 +188,7 @@ public class ModelTest {
      * Checking if the given chain of values, separated with spaces,
      * can be properly decrypted, with use of specified key.
      */
+    @Category(NormalTests.class)
     @Test
     public void testDecryptChain_3args() throws Exception {
         System.out.println("decryptChain with specified key");
@@ -131,6 +206,7 @@ public class ModelTest {
      * Testing if the specified string is properly encoded
      * into its values, separated with spaces, representation.
      */
+    @Category(NormalTests.class)
     @Test
     public void testEncryptSentence() throws Exception {
         System.out.println("encryptSentence with default key");
@@ -147,6 +223,7 @@ public class ModelTest {
      * Checks if the chain of the values separated with spaces
      * is properly decrypted.
      */
+    @Category(NormalTests.class)
     @Test
     public void testDecryptSentence_String() throws Exception {
         System.out.println("decryptSentence");
@@ -163,6 +240,7 @@ public class ModelTest {
      * Testing if the function decrypts properly given chain of values
      * into its decrypted representation.
      */
+    @Category(NormalTests.class)
     @Test
     public void testDecryptSentence_3args() throws Exception {
         System.out.println("decryptSentence");
@@ -180,6 +258,7 @@ public class ModelTest {
      * Tests if the returned value of the public key is really
      * currently set one.
      */
+    @Category(NormalTests.class)
     @Test
     public void testReturnPublicKey() {
         System.out.println("returnPublicKey");
@@ -195,6 +274,7 @@ public class ModelTest {
      * Tests if the returned value is exactly the same as
      * the private key inside the model.
      */
+    @Category(NormalTests.class)
     @Test
     public void testReturnPrivateKey() {
         System.out.println("returnPrivateKey");
@@ -210,6 +290,7 @@ public class ModelTest {
      * Checking if the returned values is the same as the
      * value of modulus specified inside the object model.
      */
+    @Category(NormalTests.class)
     @Test
     public void testReturnModulus() {
         System.out.println("returnModulus");
@@ -226,6 +307,7 @@ public class ModelTest {
      * So in general it checks if the values set for the model, meet
      * targeted values.
      */
+    @Category(NormalTests.class)
     @Test
     public void testRedefineModel() {
         System.out.println("redefineModel");

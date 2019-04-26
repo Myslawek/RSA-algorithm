@@ -13,27 +13,13 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 /**
- *
- * @author Przemysław
+ * Test suite created, to bundle the tests, to distinguishable divisions.
+ * @author Przemysław Giza
+ * @version 1.2
+ * @since 1.2
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({pl.polsl.giza.przemyslaw.rsa.ModelTest.class})
 public class RsaSuite {
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-    
 }
