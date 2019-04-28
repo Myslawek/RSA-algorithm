@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 /**
- * Test suite created, to bundle the tests, to distinguishable divisions.
+ * Test suite created, to bundle the tests, to run all of them at once
  * @author Przemysław Giza
  * @version 1.2
  * @since 1.2
