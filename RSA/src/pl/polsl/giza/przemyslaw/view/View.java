@@ -43,7 +43,7 @@ public class View {
      * Dummy constructor which shows the use of AT LEAST ONE (List, which is not prohibited array) generic collection, by feeding the help the collection.
      */
     public View(){
-        UI_HELP_CONTENT=new LinkedList();
+        UI_HELP_CONTENT=new LinkedList<String>();
         UI_HELP_CONTENT.add("Help for the program has been invoked.");
         UI_HELP_CONTENT.add("Avaiable switches:");
         UI_HELP_CONTENT.add("[-ec chain] Encrypts the chain of numbers separated with spaces");

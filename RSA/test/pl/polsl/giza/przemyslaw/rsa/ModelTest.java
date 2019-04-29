@@ -98,7 +98,7 @@ public class ModelTest {
      */
     @Category(NormalTests.class)
     @Test
-    public void testEncryptChain_String() throws Exception {
+    public void testEncryptChainString() throws Exception {
         //System.out.println("encryptChain with default key");
         String sentence = "1198";
         instance = new Model();
@@ -116,7 +116,7 @@ public class ModelTest {
      */
     @Category(NormalTests.class)
     @Test
-    public void testEncryptChainProper_3args() throws Exception {
+    public void testEncryptChainProperThreeArgs() throws Exception {
         ////System.out.println("encryptChain with specified key");
         String sentence = "5 48 7 19";
         int publicKey = 5;
@@ -132,7 +132,7 @@ public class ModelTest {
      */
     @Category(BorderTests.class)
     @Test
-    public void testEncryptChainEqualModulus_3args() throws Exception {
+    public void testEncryptChainEqualModulusThreeArgs() throws Exception {
         String sentence = "5 48 7 19";
         int publicKey = 5;
         long gvnModulus = 48;
@@ -151,7 +151,7 @@ public class ModelTest {
      */
     @Category(AbnormalTests.class)
     @Test
-    public void testEncryptChainLesserModulus_3args() throws Exception {
+    public void testEncryptChainLesserModulusThreeArgs() throws Exception {
         String sentence = "5 48 7 19";
         int publicKey = 5;
         long gvnModulus = 48;
@@ -171,7 +171,7 @@ public class ModelTest {
      */
     @Category(NormalTests.class)
     @Test
-    public void testDecryptChainProper_String() throws Exception {
+    public void testDecryptChainProperString() throws Exception {
         //System.out.println("decryptChain with default key");
         String sentence = "23923";
         instance = new Model();
@@ -186,7 +186,7 @@ public class ModelTest {
      */
     @Category(BorderTests.class)
     @Test
-    public void testDecryptChainEqualModulus_String() throws Exception {
+    public void testDecryptChainEqualModulusString() throws Exception {
         ////System.out.println("decryptChain with default key");
         String sentence = "23923";
         instance = new Model();
@@ -204,7 +204,7 @@ public class ModelTest {
      */
     @Category(AbnormalTests.class)
     @Test
-    public void testDecryptChainLesserModulus_String() throws Exception {
+    public void testDecryptChainLesserModulusString() throws Exception {
         String sentence = "23923";
         instance = new Model();
         instance.redefineModel(40637, 5, 200);
@@ -223,7 +223,7 @@ public class ModelTest {
      */
     @Category(NormalTests.class)
     @Test
-    public void testDecryptChain_3args() throws Exception {
+    public void testDecryptChainThreeArgs() throws Exception {
         //System.out.println("decryptChain with specified key");
         String sentence = "3125 29102 16807 28547";
         int key = 22709;
@@ -258,7 +258,7 @@ public class ModelTest {
      */
     @Category(NormalTests.class)
     @Test
-    public void testDecryptSentenceProperModulus_String() throws Exception {
+    public void testDecryptSentenceProperModulusString() throws Exception {
         //System.out.println("decryptSentence");
         String sentence = "16901 54844 16901 66317 52312 16901 66317 15276 41552 59116 16901";
         instance = new Model();
@@ -274,7 +274,7 @@ public class ModelTest {
      */
     @Category(BorderTests.class)
     @Test
-    public void testDecryptSentenceEqualModulus_String() throws Exception {
+    public void testDecryptSentenceEqualModulusString() throws Exception {
         ////System.out.println("decryptSentence");
         String sentence = "16901 54844 16901 66317 52312 16901 66317 15276 41552 59116 16901";
         instance = new Model();
@@ -294,7 +294,7 @@ public class ModelTest {
      */
     @Category(AbnormalTests.class)
     @Test
-    public void testDecryptSentenceLesserModulus_String() throws Exception {
+    public void testDecryptSentenceLesserModulusString() throws Exception {
         String sentence = "16901 54844 16901 66317 52312 16901 66317 15276 41552 59116 16901";
         instance = new Model();
         instance.redefineModel(76877, 5, 5000);
@@ -314,7 +314,7 @@ public class ModelTest {
      */
     @Category(NormalTests.class)
     @Test
-    public void testDecryptSentenceProperModulus_3args() throws Exception {
+    public void testDecryptSentenceProperModulusThreeArgs() throws Exception {
         //System.out.println("decryptSentence");
         String sentence = "16901 54844 16901 66317 52312 16901 66317 15276 41552 59116 16901";
         int key = 76877;
@@ -331,7 +331,7 @@ public class ModelTest {
      */
     @Category(BorderTests.class)
     @Test
-    public void testDecryptSentenceEqualModulus_3args() throws Exception {
+    public void testDecryptSentenceEqualModulusThreeArgs() throws Exception {
         //System.out.println("decryptSentence");
         String sentence = "16901 54844 16901 66317 52312 16901 66317 15276 41552 59116 16901";
         int key = 76877;
@@ -352,7 +352,7 @@ public class ModelTest {
      */
     @Category(AbnormalTests.class)
     @Test
-    public void testDecryptSentenceLesserModulus_3args() throws Exception {
+    public void testDecryptSentenceLesserModulusThreeArgs() throws Exception {
         //System.out.println("decryptSentence");
         String sentence = "16901 54844 16901 66317 52312 16901 66317 15276 41552 59116 16901";
         int key = 76877;
